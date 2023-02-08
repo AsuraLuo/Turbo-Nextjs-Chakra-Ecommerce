@@ -8,6 +8,8 @@
     "lint": "TIMING=1 eslint \"**/*.ts*\""
   },
   "dependencies": {
+    "@chakra-ui/react": "^2.4.9",
+    "framer-motion": "^9.0.2",
     "react-images-uploading": "^3.1.7"
   },
   "devDependencies": {

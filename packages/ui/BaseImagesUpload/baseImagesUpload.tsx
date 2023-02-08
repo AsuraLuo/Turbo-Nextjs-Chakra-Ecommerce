@@ -1,10 +1,10 @@
 import { FC, useState } from 'react'
-import { Button } from 'antd'
 import ImageUploading, {
   ImageUploadingPropsType,
   ImageListType
 } from 'react-images-uploading'
 
+import Button from '../Button'
 import { StyledImagesUpload } from './styled'
 
 interface BaseImagesUploadProps

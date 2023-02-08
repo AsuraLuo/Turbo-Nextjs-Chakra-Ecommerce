@@ -1,6 +1,8 @@
 import Document, { Html, Head, Main, NextScript } from 'next/document'
-import { createCache, extractStyle, StyleProvider } from '@ant-design/cssinjs'
 import { Helmet } from 'react-helmet'
+
+import { theme } from '@config/theme'
+import { ColorModeScript } from '@ecommerce/ui'
 
 interface HeadlessProps {
   helmet: any
@@ -26,6 +28,7 @@ class HeadlessDocument extends Document<HeadlessProps> {
       <Html {...this.helmetHtmlAttrComponents}>
         <Head>{this.helmetHeadComponents}</Head>
         <body {...this.helmetBodyAttrComponents}>
+          <ColorModeScript initialColorMode={theme.config.initialColorMode} />
           <Main />
           <NextScript />
         </body>
@@ -56,34 +59,10 @@ HeadlessDocument.getInitialProps = async (ctx) => {
   // 2. page.getInitialProps
   // 3. app.render
   // 4. page.render
-  const cache = createCache()
-  const originalRenderPage = ctx.renderPage
-
-  ctx.renderPage = () =>
-    originalRenderPage({
-      enhanceApp: (App) => (props) =>
-        (
-          <StyleProvider cache={cache}>
-            <App {...props} />
-          </StyleProvider>
-        )
-    })
-
   const initialProps = await Document.getInitialProps(ctx)
-  const css = extractStyle(cache)
 
   return {
     ...initialProps,
-    styles: (
-      <>
-        {initialProps.styles}
-        <style
-          id="jss-server-side"
-          key="jss-server-side"
-          dangerouslySetInnerHTML={{ __html: css }}
-        />
-      </>
-    ),
     helmet: Helmet.renderStatic()
   }
 }

@@ -1,8 +1,8 @@
 import { FC } from 'react'
-import { Button as AntdButton, ButtonProps } from 'antd'
+import { Button, ButtonProps } from '@chakra-ui/react'
 
-const Button: FC<ButtonProps> = ({ children, ...props }) => {
-  return <AntdButton {...props}>{children}</AntdButton>
+const HeadlessButton: FC<ButtonProps> = ({ children, ...props }) => {
+  return <Button {...props}>{children}</Button>
 }
 
-export default Button
+export default HeadlessButton
