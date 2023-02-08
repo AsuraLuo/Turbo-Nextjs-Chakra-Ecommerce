@@ -1,8 +1,10 @@
 import Head from 'next/head'
 import { AppProps } from 'next/app'
 import { Provider as ReduxProvider } from 'react-redux'
+import { ChakraProvider } from '@chakra-ui/react'
 import { isEmpty } from 'lodash'
 
+import { theme } from '@config/theme'
 import { withRedux, LocaleContextProvider } from '@provider/index'
 import { fetchApp } from '@hooks/App'
 
@@ -44,9 +46,11 @@ const App = ({ Component, pageProps, reduxStore }: HeadlessProps) => {
       </Head>
       <ReduxProvider store={reduxStore}>
         <LocaleContextProvider>
-          <AppShell>
-            <Component {...pageProps} />
-          </AppShell>
+          <ChakraProvider theme={theme}>
+            <AppShell>
+              <Component {...pageProps} />
+            </AppShell>
+          </ChakraProvider>
         </LocaleContextProvider>
       </ReduxProvider>
     </>
