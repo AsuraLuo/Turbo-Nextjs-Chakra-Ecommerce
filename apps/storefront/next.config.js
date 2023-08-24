@@ -16,7 +16,7 @@ module.exports = () => {
     poweredByHeader: false,
     reactStrictMode: true,
     swcMinify: true,
-    trailingSlash: false,
+    trailingSlash: true,
     compiler: {
       emotion: true,
       reactRemoveProperties: isProd,

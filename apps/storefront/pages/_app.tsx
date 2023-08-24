@@ -2,7 +2,7 @@ import Head from 'next/head'
 import { AppProps } from 'next/app'
 import { Provider as ReduxProvider } from 'react-redux'
 import { ChakraProvider } from '@chakra-ui/react'
-import { isEmpty } from 'lodash'
+import { isEmpty } from 'lodash-es'
 
 import { theme } from '@config/theme'
 import { withRedux, LocaleContextProvider } from '@provider/index'
